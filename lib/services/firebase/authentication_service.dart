@@ -126,28 +126,27 @@ class FirebaseAuthService {
     await GoogleSignIn().signOut();
   }
 
-  // Future<void> signOutFromGoogle() async{
-  //   final FirebaseAuth auth = FirebaseAuth.instance;
-  //   final GoogleSignIn googleSignIn = GoogleSignIn();
-  //   await googleSignIn.signOut();
-  //   await auth.signOut();
-  // }
+ 
   static Future forgotPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      // Show a success message to the user
-      //print("Password reset link sent to your email!");
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-       // print('No user found for this email.');
-        // Show an error message to the user (e.g., "Email not found")
         return S.current.noUser;
       } else {
-        // print(e.message);
-        // Handle other exceptions (e.g., network errors)
         return e.toString();
       }
+    }
+  }
+
+  static Future sendEmailVerfication() async {
+    try {
+      await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+      return true;
+    } catch (e) {
+      print("error from email verfication");
+      return e.toString();
     }
   }
 }

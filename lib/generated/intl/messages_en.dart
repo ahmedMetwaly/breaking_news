@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "co": MessageLookupByLibrary.simpleMessage("Colombia"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confim"),
         "confirmDelete": MessageLookupByLibrary.simpleMessage("Confirm Delete"),
+        "confirmLogout":
+            MessageLookupByLibrary.simpleMessage(" Confirm logout"),
         "confirmPasssword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "connectionError": MessageLookupByLibrary.simpleMessage(
@@ -72,6 +74,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email not found"),
         "emailRequired": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid email !"),
+        "emailVerficationDescription": MessageLookupByLibrary.simpleMessage(
+            "Email verfication sent check your email and click on the link then press done to login.\nif the email not sent to you please press on Resend email."),
+        "emailVerficationSent":
+            MessageLookupByLibrary.simpleMessage("Email verfication sent."),
         "enLang": MessageLookupByLibrary.simpleMessage("English"),
         "entertainment": MessageLookupByLibrary.simpleMessage("Entertainment"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
@@ -117,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The email or password is not correct"),
         "loginWithSocialMedia":
             MessageLookupByLibrary.simpleMessage("Or login with"),
+        "logoutDescription":
+            MessageLookupByLibrary.simpleMessage("Do you want to logout ?"),
         "lt": MessageLookupByLibrary.simpleMessage("Lithuania"),
         "lv": MessageLookupByLibrary.simpleMessage("Latvia"),
         "ma": MessageLookupByLibrary.simpleMessage("Morocco"),

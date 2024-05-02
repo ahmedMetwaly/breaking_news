@@ -1,5 +1,6 @@
 import "package:breaking_news/bloc/sharedprefrences/sharedpref_bloc.dart";
 import "package:breaking_news/bloc/sharedprefrences/sharedpref_state.dart";
+import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:breaking_news/resources/image_manager.dart";
 import "package:breaking_news/resources/values_manager.dart";
@@ -53,8 +54,16 @@ class SplashScreen extends StatelessWidget {
             ));
       },
       listener: (BuildContext context, AuthenticationState state) {
-        if (state is AuthenticationSuccessState) {
+        if (state is AuthenticationSuccessState &&
+            FirebaseAuth.instance.currentUser!.emailVerified == true) {
+          print("the email verified");
+
           Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
+        } else if (state is AuthenticationSuccessState &&
+            FirebaseAuth.instance.currentUser!.emailVerified == false) {
+                        print("the email not verified");
+
+          Navigator.of(context).pushReplacementNamed(Routes.verifyEmail);
         }
       },
     );

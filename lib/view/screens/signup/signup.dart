@@ -2,6 +2,7 @@ import 'package:breaking_news/bloc/authentication/authentication_bloc.dart';
 import 'package:breaking_news/bloc/authentication/authentication_state.dart';
 import 'package:breaking_news/model/user_model.dart';
 import 'package:breaking_news/view/screens/signup/widgets/phone.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:breaking_news/resources/routes.dart';
@@ -33,7 +34,6 @@ class SignUp extends StatelessWidget {
         padding: const EdgeInsets.all(PaddingManager.pMainPadding),
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
             builder: (BuildContext context, AuthenticationState state) {
-              
           return Form(
             key: formKey,
             child: SingleChildScrollView(
@@ -56,8 +56,7 @@ class SignUp extends StatelessWidget {
                         Email(inputController: emailController),
                         const SizedBox(height: SizeManager.sSpace),
                         Passsword(
-                                                    label: S.current.password,
-
+                            label: S.current.password,
                             inputController: passwordController,
                             insideSignInPage: false),
                         const SizedBox(height: SizeManager.sSpace),
@@ -66,7 +65,7 @@ class SignUp extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         const SelectCountry(),
-                     //   const InitSettings(),
+                        //   const InitSettings(),
                         const SizedBox(height: 16),
                         Text(S.current.topicsCare),
                         const ListOfCheckBoxs(),
@@ -103,7 +102,8 @@ class SignUp extends StatelessWidget {
                               context
                                   .read<AuthenticationBloc>()
                                   .add(AuthSignUpEvent());
-                            } else {}
+                              
+                            } 
                           },
                         ),
                       ],
@@ -112,9 +112,15 @@ class SignUp extends StatelessWidget {
             ),
           );
         }, listener: (BuildContext context, AuthenticationState state) {
-          if (state is AuthenticationSuccessState) {
+          if (state is AuthenticationSuccessState &&
+              FirebaseAuth.instance.currentUser!.emailVerified == true) {
             Navigator.of(context).pushReplacementNamed(
               Routes.homeScreen,
+            );
+          } else if (state is AuthenticationSuccessState &&
+              FirebaseAuth.instance.currentUser!.emailVerified == false) {
+            Navigator.of(context).pushReplacementNamed(
+              Routes.verifyEmail,
             );
           }
         }),

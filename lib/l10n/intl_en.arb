@@ -151,5 +151,9 @@
     "checkYourEmail": "Password reset email sent check your account.",
     "sent": "Sent",
     "goodAfternoon": "Good afternoon",
-    "goodEvening" : "Good evining"
+    "goodEvening" : "Good evining",
+    "confirmLogout" :" Confirm logout",
+    "logoutDescription": "Do you want to logout ?",
+    "emailVerficationSent": "Email verfication sent.",
+    "emailVerficationDescription":"Email verfication sent check your email and click on the link then press done to login.\nif the email not sent to you please press on Resend email."
 }

@@ -17,13 +17,11 @@ class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
-    final GifController gifController = GifController(
-      loop: false,
-    );
+    
     final formKey = GlobalKey<FormState>();
-    Future.delayed(
-        const Duration(milliseconds: 900), () => gifController.pause());
-    return Scaffold(
+     late GifController gifController;
+    gifController = GifController(onFrame: (value) => value==24 ? gifController.pause():null);
+   return Scaffold(
       appBar: AppBar(
         title: Text(
           S.current.forgotPassword,

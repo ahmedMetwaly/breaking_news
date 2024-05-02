@@ -1,8 +1,8 @@
 import 'package:breaking_news/bloc/authentication/authentication_bloc.dart';
 import 'package:breaking_news/bloc/authentication/authentication_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import "package:breaking_news/resources/image_manager.dart";
 import "package:breaking_news/resources/values_manager.dart";
 import 'package:breaking_news/view/screens/login/widgets/email.dart';
@@ -91,9 +91,7 @@ class LogIn extends StatelessWidget {
                               context
                                   .read<AuthenticationBloc>()
                                   .add(AuthLogInEvent());
-                            } else {
-                              print("not valid");
-                            }
+                            } 
                           },
                         ),
                       ],
@@ -206,23 +204,22 @@ class LogIn extends StatelessWidget {
                 },
               );
             }
-            if (state is AuthenticationSuccessState) {
+            if (state is AuthenticationSuccessState &&
+                FirebaseAuth.instance.currentUser!.emailVerified == true) {
               Navigator.pop(context);
-             
               if (state.initializedSettings == null) {
-                Navigator.of(context).pushReplacementNamed(
-                  Routes.homeScreen,
-                );
+                Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
               } else if (state.initializedSettings != null &&
                   state.initializedSettings == true) {
-                Navigator.of(context).pushReplacementNamed(
-                  Routes.homeScreen,
-                );
+                Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
               } else {
-                Navigator.of(context).pushReplacementNamed(
-                  Routes.initSettings,
-                );
+                Navigator.of(context).pushReplacementNamed(Routes.initSettings);
               }
+            }
+            if (state is AuthenticationSuccessState &&
+                FirebaseAuth.instance.currentUser!.emailVerified == false) {
+              Navigator.pop(context);
+              Navigator.of(context).pushReplacementNamed(Routes.verifyEmail);
             }
           },
         ),
@@ -230,20 +227,4 @@ class LogIn extends StatelessWidget {
     );
   }
 
-  String? validateEmail(String? value) {
-    const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
-        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
-        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
-        r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
-        r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
-        r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
-        r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
-    final regex = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredField;
-    } else if (!regex.hasMatch(value)) {
-      return S.current.notValidEmail;
-    }
-    return null;
-  }
 }

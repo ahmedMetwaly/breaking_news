@@ -1579,6 +1579,46 @@ class S {
       args: [],
     );
   }
+
+  /// ` Confirm logout`
+  String get confirmLogout {
+    return Intl.message(
+      ' Confirm logout',
+      name: 'confirmLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to logout ?`
+  String get logoutDescription {
+    return Intl.message(
+      'Do you want to logout ?',
+      name: 'logoutDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email verfication sent.`
+  String get emailVerficationSent {
+    return Intl.message(
+      'Email verfication sent.',
+      name: 'emailVerficationSent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email verfication sent check your email and click on the link then press done to login.\nif the email not sent to you please press on Resend email.`
+  String get emailVerficationDescription {
+    return Intl.message(
+      'Email verfication sent check your email and click on the link then press done to login.\nif the email not sent to you please press on Resend email.',
+      name: 'emailVerficationDescription',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

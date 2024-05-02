@@ -10,39 +10,42 @@ import '../../../../bloc/authentication/authentication_event.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../resources/image_manager.dart';
 
-class ResetEmail extends StatelessWidget {
-  const ResetEmail({
+class VerifyEmail extends StatelessWidget {
+  const VerifyEmail({
     super.key,
   });
   @override
   Widget build(BuildContext context) {
-     late GifController gifController;
+    late GifController gifController;
     gifController = GifController(onFrame: (value) => value==24 ? gifController.pause():null);
+  
+    context.read<AuthenticationBloc>().add(AuthSendEmailVerfication());
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 0,
         leading: const SizedBox(),
-        actions: [
+        /* actions: [
           IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.close))
-        ],
+        ], */
       ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(PaddingManager.pMainPadding),
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           listener: (BuildContext context, AuthenticationState state) {
-            if (state is ForgetPasswordEmailSent) {
+            Navigator.of(context).canPop() ? Navigator.of(context).pop() : null;
+            if (state is EmailVerficationSent) {
               if (state.email.isNotEmpty) {
-                Navigator.of(context).pop();
+                /* Navigator.of(context).pop();
                 showDialog<bool>(
                   context: context,
                   barrierDismissible: false,
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text(S.current.sent),
-                      content: Text(S.current.checkYourEmail),
+                      content: Text(S.current.emailVerficationSent),
                       actions: [
                         TextButton(
                             onPressed: () => Navigator.pop(context, true),
@@ -50,11 +53,18 @@ class ResetEmail extends StatelessWidget {
                       ],
                     );
                   },
-                );
+                ); */
+                Navigator.of(context).canPop()
+                    ? Navigator.of(context).pop()
+                    : null;
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                  S.current.emailVerficationSent,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )));
               }
             }
             if (state is AuthenticationFailureState) {
-              Navigator.of(context).pop();
               showDialog<bool>(
                 context: context,
                 barrierDismissible: false,
@@ -86,13 +96,13 @@ class ResetEmail extends StatelessWidget {
                 frameRate: 30, // default is 15 FPS
               )),
               const SizedBox(height: SizeManager.sSpace),
-              Text(S.current.passwordReset,
+              Text(S.current.emailVerficationSent,
                   style: Theme.of(context).textTheme.headlineMedium),
               const SizedBox(height: SizeManager.sSpace),
-              Text(state is ForgetPasswordEmailSent ? state.email : "",
+              Text(state is EmailVerficationSent ? state.email : "",
                   style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: SizeManager.sSpace16),
-              Text(S.current.passwordResestDetails,
+              Text(S.current.emailVerficationDescription,
                   style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: SizeManager.sSpace32),
               MyElevatedButton(
@@ -105,7 +115,7 @@ class ResetEmail extends StatelessWidget {
                   onPressed: () {
                     context
                         .read<AuthenticationBloc>()
-                        .add(AuthForgetPassword());
+                        .add(AuthSendEmailVerfication());
                   },
                   child: Text(S.current.resendEmail)),
             ],

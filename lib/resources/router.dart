@@ -1,5 +1,6 @@
 import "package:breaking_news/view/screens/login/screens/reset_email.dart";
 import "package:breaking_news/view/screens/profile_page/screens/history.dart";
+import "package:breaking_news/view/screens/signup/screens/veify_email.dart";
 import "package:flutter/material.dart";
 import "package:breaking_news/view/screens/home_screen/home_screen.dart";
 import "package:breaking_news/view/screens/init_settings/init_settings.dart";
@@ -39,10 +40,12 @@ class RoutesGeneratour {
         return MaterialPageRoute(builder: (_) => const WebView());
       case Routes.appStarts:
         return MaterialPageRoute(builder: (_) => const AppStarts());
-            case Routes.forgetPassword:
+      case Routes.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPassword());
-         case Routes.resetEmail:
+      case Routes.resetEmail:
         return MaterialPageRoute(builder: (_) => const ResetEmail());
+      case Routes.verifyEmail:
+        return MaterialPageRoute(builder: (_) => const VerifyEmail());
       default:
         return unFoundedRoute();
     }

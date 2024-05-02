@@ -2,7 +2,6 @@ import 'package:breaking_news/bloc/firestore/firestore_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../bloc/authentication/authentication_bloc.dart';
 import '../../../../bloc/firestore/firestore_bloc.dart';
 import '../../../../bloc/firestore/firestore_event.dart';

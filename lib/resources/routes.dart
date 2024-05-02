@@ -15,6 +15,8 @@ class Routes {
   static const String appStarts ="/appStarts";
   static const String forgetPassword ="/forgetPassword";
   static const String resetEmail= "/resetEmail";
+  static const String verifyEmail= "/verifyEmail";
+
 
 
 }

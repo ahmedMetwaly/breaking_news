@@ -11,11 +11,17 @@ class AuthenticationSuccessState extends AuthenticationState {
   final bool? initializedSettings;
   AuthenticationSuccessState({required this.user, this.initializedSettings});
 }
+
 class ForgetPasswordEmailSent extends AuthenticationState {
   final String email;
-
   ForgetPasswordEmailSent({required this.email});
 }
+
+class EmailVerficationSent extends AuthenticationState {
+  final String email;
+  EmailVerficationSent({required this.email});
+}
+
 class AuthenticationFailureState extends AuthenticationState {
   final String errorMessage;
 

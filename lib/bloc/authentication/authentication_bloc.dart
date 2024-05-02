@@ -16,6 +16,7 @@ class AuthenticationBloc
     on<AuthLogInWithGoogle>(_loginWithGoogle);
     on<AuthLogInWithFacebook>(_loginWithFacebook);
     on<AuthForgetPassword>(_forgetPassword);
+    on<AuthSendEmailVerfication>(_sendEmailVerfication);
     on<AuthLogOutEvent>(_logOut);
     on<AppStarted>(_checkTheUserLogged);
   }
@@ -69,6 +70,7 @@ class AuthenticationBloc
               language: user.language,
               phoneNumber: user.phoneNumber,
               emailVerfied: false);
+//          await FirebaseAuthService.sendEmailVerfication();
           await FirestoreService()
               .saveUserData(user)
               .then((userData) => emit(AuthenticationSuccessState(user: user)));
@@ -192,13 +194,12 @@ class AuthenticationBloc
       AuthForgetPassword event, Emitter<AuthenticationState> emit) async {
     try {
       emit(AuthLoadingState());
-     await FirebaseAuthService.forgotPassword(user.email??"").then((value) {
+      await FirebaseAuthService.forgotPassword(user.email ?? "").then((value) {
         if (value == true) {
           emit(ForgetPasswordEmailSent(
-              email : AuthenticationBloc.user.email??""));
+              email: AuthenticationBloc.user.email ?? ""));
         } else {
-          emit(AuthenticationFailureState(
-              errorMessage: value));
+          emit(AuthenticationFailureState(errorMessage: value));
         }
       });
     } catch (error) {
@@ -211,5 +212,20 @@ class AuthenticationBloc
     emit(AuthLoadingState());
     await FirebaseAuthService.logOut();
     emit(AuthLogOutState());
+  }
+
+  FutureOr<void> _sendEmailVerfication(
+      AuthSendEmailVerfication event, Emitter<AuthenticationState> emit) async {
+    try {
+      emit(AuthLoadingState());
+      await FirebaseAuthService.sendEmailVerfication().then((value) {
+        if (value == true) {
+          emit(
+              EmailVerficationSent(email: AuthenticationBloc.user.email ?? ""));
+        } 
+      });
+    } catch (error) {
+      emit(AuthenticationFailureState(errorMessage: error.toString()));
+    }
   }
 }

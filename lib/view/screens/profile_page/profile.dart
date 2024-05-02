@@ -3,7 +3,6 @@ import 'package:breaking_news/bloc/authentication/authentication_bloc.dart';
 import 'package:breaking_news/bloc/authentication/authentication_state.dart';
 import 'package:breaking_news/bloc/intersted_topics/intersted_topics_bloc.dart';
 import 'package:breaking_news/bloc/intersted_topics/intersted_topicss_event.dart';
-
 import 'package:breaking_news/model/user_model.dart';
 import 'package:breaking_news/view/screens/profile_page/widgets/change_lang.dart';
 import 'package:breaking_news/view/screens/profile_page/widgets/change_theme.dart';
@@ -90,20 +89,46 @@ class ProfilePage extends StatelessWidget {
                   S.current.history,
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                trailing:const Icon(Icons.arrow_forward_ios_rounded),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded),
               ),
               const Spacer(),
               ElevatedButton(
                   onPressed: () {
                     if (state is AuthenticationSuccessState) {
-                      context.read<InterstedTopicsBloc>().interstedTopics = [
-                        "general"
-                      ];
-                      context.read<InterstedTopicsBloc>().country = "us";
-                      context
-                          .read<InterstedTopicsBloc>()
-                          .add(GetInterstedTopics());
-                      context.read<AuthenticationBloc>().add(AuthLogOutEvent());
+                      showDialog<bool>(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(S.current.confirmLogout),
+                            content: Text(S.current.logoutDescription),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    context
+                                        .read<InterstedTopicsBloc>()
+                                        .interstedTopics = ["general"];
+                                    context
+                                        .read<InterstedTopicsBloc>()
+                                        .country = "us";
+                                    context
+                                        .read<InterstedTopicsBloc>()
+                                        .add(GetInterstedTopics());
+                                    context
+                                        .read<AuthenticationBloc>()
+                                        .add(AuthLogOutEvent());
+
+                                    Navigator.pop(context, true);
+                                  },
+                                  child: Text(S.current.ok)),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, true),
+                                child: Text(S.current.cancel),
+                              )
+                            ],
+                          );
+                        },
+                      );
                     }
                     if (state is AuthLogOutState) {
                       Navigator.of(context).pushNamed(Routes.logIn);
@@ -144,4 +169,3 @@ class ProfilePage extends StatelessWidget {
     ));
   }
 }
-
