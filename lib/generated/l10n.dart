@@ -810,11 +810,11 @@ class S {
     );
   }
 
-  /// `Select Country`
-  String get selectCountry {
+  /// `Select intersted country`
+  String get selectInterestedCountry {
     return Intl.message(
-      'Select Country',
-      name: 'selectCountry',
+      'Select intersted country',
+      name: 'selectInterestedCountry',
       desc: '',
       args: [],
     );

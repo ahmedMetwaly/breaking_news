@@ -188,7 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Search article, topic, writer"),
         "searchResult": MessageLookupByLibrary.simpleMessage("Search Result"),
         "select": MessageLookupByLibrary.simpleMessage("Select"),
-        "selectCountry": MessageLookupByLibrary.simpleMessage("Select Country"),
+        "selectInterestedCountry":
+            MessageLookupByLibrary.simpleMessage("Select intersted country"),
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select language"),
         "sent": MessageLookupByLibrary.simpleMessage("Sent"),

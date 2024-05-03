@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../bloc/sharedprefrences/sharedpref_bloc.dart';
-import '../../../../bloc/sharedprefrences/sharedpref_event.dart';
 import '../../../../generated/l10n.dart';
 
 class ChangeTheme extends StatelessWidget {

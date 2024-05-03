@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:breaking_news/view/screens/home/widgets/coustom_appbar.dart';
 import 'package:breaking_news/view/screens/home/widgets/slider_item.dart';
+import '../../../../bloc/authentication/authentication_bloc.dart';
 import '../../../../bloc/news/news_event.dart';
 import '../../../../model/article_model.dart';
 import '../../../../resources/values_manager.dart';
@@ -17,9 +18,11 @@ class Header extends StatelessWidget {
     return SliverList(
         delegate: SliverChildListDelegate([
       const CoustomAppBar(),
-      BlocBuilder<NewsBloc, NewsState>(
-          builder: (context, state) {
+      BlocBuilder<NewsBloc, NewsState>(builder: (context, state) {
         if (state is InitialState) {
+          context.read<NewsBloc>().country =
+              AuthenticationBloc.user.country ?? "us";
+
           context.read<NewsBloc>().add(GetTopHeadline());
         }
         if (state is LoadingState) {

@@ -1,3 +1,4 @@
+import 'package:breaking_news/bloc/authentication/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:breaking_news/bloc/news/news_bloc.dart';
@@ -18,6 +19,7 @@ class TopicWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.read<NewsBloc>().specificTopic = topicModel.requestTopic.toLowerCase();
+        context.read<NewsBloc>().country = AuthenticationBloc.user.country??"us";
         context.read<NewsBloc>().add(GetTopHeadline());
         Navigator.push(
             context,

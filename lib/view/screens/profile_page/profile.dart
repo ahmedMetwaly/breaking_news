@@ -14,6 +14,7 @@ import 'package:breaking_news/view/widgets/image_from_network.dart';
 import 'package:intl/intl.dart';
 import '../../../bloc/authentication/authentication_event.dart';
 import '../../../resources/routes.dart';
+import 'widgets/change_intersted_country.dart';
 import 'widgets/change_profile_image.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -39,8 +40,7 @@ class ProfilePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
-              const SizedBox(height: SizeManager.sSpace),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.015),
               state is AuthenticationSuccessState
                   ? const ChangeProfileImageWidget()
                   : ImageFromNetwork(
@@ -49,18 +49,18 @@ class ProfilePage extends StatelessWidget {
                       width: 150,
                       fit: BoxFit.cover,
                     ),
-              const SizedBox(width: SizeManager.sSpace),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    const SizedBox(height: SizeManager.sSpace),
                     Text(
                       state is AuthenticationSuccessState
                           ? state.user.name ?? S.current.userError
                           : S.current.guest,
                       style: Theme.of(context).textTheme.headlineSmall,
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
@@ -68,18 +68,17 @@ class ProfilePage extends StatelessWidget {
                           ? state.user.email ?? S.current.emailErrorSignUp
                           : "",
                       style: Theme.of(context).textTheme.bodySmall,
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     )
                   ],
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              const ChangeLanguageWidget(),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.005),
               const ChangeTheme(),
-              const SizedBox(
-                height: SizeManager.sSpace,
-              ),
+              const ChangeLanguageWidget(),
+              const SizedBox(height: SizeManager.sSpace),
+              const ChangeInterstedCountry(),
               ListTile(
                 onTap: () {
                   Navigator.of(context).pushNamed(Routes.history);

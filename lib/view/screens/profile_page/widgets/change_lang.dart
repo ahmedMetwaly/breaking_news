@@ -62,20 +62,7 @@ class ChangeLanguageWidget extends StatelessWidget {
                                 }
                               },
                             );
-                            // if (state is AuthenticationSuccessState) {
-                            //   AuthenticationBloc.user.language = "en";
-                            //   context
-                            //       .read<FirestoreBloc>()
-                            //       .add(ChangeLanguage());
-                            //  /* context.read<AuthenticationBloc>().emit(
-                            //       AuthenticationSuccessState(
-                            //           user: AuthenticationBloc.user));*/
-                            // } else {
-                            //   // imade settings bloc the app gets all settings from it at the start
-                            //   //TODO:: update from sharedPrefrences
-                            //
-                            //   print("you are logout");
-                            // }
+                            
                             context.read<SharedPrefBloc>().changeLang("en");
                             Navigator.pop(context);
                           },
@@ -83,19 +70,7 @@ class ChangeLanguageWidget extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-                            /*if (state is AuthenticationSuccessState) {
-                          AuthenticationBloc.user.language = "ar";
-                          context
-                              .read<FirestoreBloc>()
-                              .add(ChangeLanguage());
-
-                            context.read<AuthenticationBloc>().emit(
-                                    AuthenticationSuccessState(
-                                        user: AuthenticationBloc.user));
-                        } else {
-                          //TODO:: update from sharedPrefrences
-                          print("you are logout");
-                        }*/
+               
                             BlocListener<AuthenticationBloc,
                                 AuthenticationState>(
                               listener: (BuildContext context,
@@ -111,7 +86,6 @@ class ChangeLanguageWidget extends StatelessWidget {
 
                             context.read<SharedPrefBloc>().changeLang("ar");
                             Navigator.pop(context);
-                            // print(AuthenticationBloc.user.language);
                           },
                           title: Text(S.current.arLang),
                         ),

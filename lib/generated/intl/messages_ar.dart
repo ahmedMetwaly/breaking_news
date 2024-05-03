@@ -142,9 +142,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchHint":
             MessageLookupByLibrary.simpleMessage("بحث المقال، الموضوع، الكاتب"),
         "searchResult": MessageLookupByLibrary.simpleMessage("نتيجة البحث"),
-        "select": MessageLookupByLibrary.simpleMessage("اختيار"),
-        "selectCountry": MessageLookupByLibrary.simpleMessage("اختيار الدولة"),
-        "selectLanguage": MessageLookupByLibrary.simpleMessage("اختيار اللغة"),
+        "select": MessageLookupByLibrary.simpleMessage("اختر"),
+        "selectInterestedCountry": MessageLookupByLibrary.simpleMessage(
+            "اختر الدولة النى مهتم بأخبارها"),
+        "selectLanguage": MessageLookupByLibrary.simpleMessage("اختر اللغة"),
         "sg": MessageLookupByLibrary.simpleMessage("سنغافورة"),
         "si": MessageLookupByLibrary.simpleMessage("سلوفينيا"),
         "signUpWithSc":
