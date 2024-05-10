@@ -4,9 +4,11 @@ class ImageManager {
   //Splash Screen
   static const splash = "${path}splash.png";
   //onboardingScreen
-  static const onboarding1 = "${path}onboarding1.jpg";
-  static const onboarding2 = "${path}onboarding2.jpg";
-  static const onboarding3 = "${path}onboarding3.jpg";
+  static const onboarding1 = "${path}onboarding1.gif";
+  static const onboarding2 = "${path}onboarding2.gif";
+  static const onboarding3 = "${path}onboarding3.gif";
+  //Errors
+  static const noConnection = "${path}noConnection.gif";
   //icons
   static const facebook = "${path}facebook.svg";
   static const google = "${path}google.svg";

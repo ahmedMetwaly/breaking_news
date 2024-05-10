@@ -2,10 +2,8 @@ import 'package:breaking_news/bloc/authentication/authentication_bloc.dart';
 import 'package:breaking_news/bloc/authentication/authentication_state.dart';
 import 'package:breaking_news/model/user_model.dart';
 import 'package:breaking_news/view/screens/signup/widgets/phone.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:breaking_news/resources/routes.dart';
 import '../../../bloc/authentication/authentication_event.dart';
 import '../../../bloc/init_settings/init_settings_bloc.dart';
 import '../../../generated/l10n.dart';
@@ -46,9 +44,7 @@ class SignUp extends StatelessWidget {
                       S.current.signup,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    const SizedBox(
-                      height: SizeManager.s80,
-                    ),
+                    const SizedBox(height: SizeManager.s80),
                     Column(
                       children: [
                         Name(nameController: nameController),
@@ -60,12 +56,9 @@ class SignUp extends StatelessWidget {
                             inputController: passwordController,
                             insideSignInPage: false),
                         const SizedBox(height: SizeManager.sSpace),
-                        Phone(
-                          controller: phoneNumberController,
-                        ),
+                        Phone(controller: phoneNumberController),
                         const SizedBox(height: 16),
                         const SelectCountry(),
-                        //   const InitSettings(),
                         const SizedBox(height: 16),
                         Text(S.current.topicsCare),
                         const ListOfCheckBoxs(),
@@ -102,8 +95,7 @@ class SignUp extends StatelessWidget {
                               context
                                   .read<AuthenticationBloc>()
                                   .add(AuthSignUpEvent());
-                              
-                            } 
+                            }
                           },
                         ),
                       ],
@@ -112,17 +104,17 @@ class SignUp extends StatelessWidget {
             ),
           );
         }, listener: (BuildContext context, AuthenticationState state) {
-          if (state is AuthenticationSuccessState &&
+         /*  if (state is AuthenticationSuccessState &&
               FirebaseAuth.instance.currentUser!.emailVerified == true) {
-            Navigator.of(context).pushReplacementNamed(
-              Routes.homeScreen,
-            );
+                              Navigator.pop(context);
+
+            Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
           } else if (state is AuthenticationSuccessState &&
               FirebaseAuth.instance.currentUser!.emailVerified == false) {
-            Navigator.of(context).pushReplacementNamed(
-              Routes.verifyEmail,
-            );
-          }
+                                              Navigator.pop(context);
+
+            Navigator.of(context).pushReplacementNamed(Routes.verifyEmail);
+          } */
         }),
       )),
     );

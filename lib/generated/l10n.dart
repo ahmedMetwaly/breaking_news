@@ -240,20 +240,20 @@ class S {
     );
   }
 
-  /// `Welcome to the NewsNow App`
+  /// `Welcome to the News App`
   String get onboarding1Title {
     return Intl.message(
-      'Welcome to the NewsNow App',
+      'Welcome to the News App',
       name: 'onboarding1Title',
       desc: '',
       args: [],
     );
   }
 
-  /// `Stay ahead of the curve with NewsNow! Personalize your news feed, receive breaking news alerts, and explore a world of information at your fingertips`
+  /// `Stay ahead of the curve with News! Personalize your news feed, receive breaking news alerts, and explore a world of information at your fingertips`
   String get onboarding1Body {
     return Intl.message(
-      'Stay ahead of the curve with NewsNow! Personalize your news feed, receive breaking news alerts, and explore a world of information at your fingertips',
+      'Stay ahead of the curve with News! Personalize your news feed, receive breaking news alerts, and explore a world of information at your fingertips',
       name: 'onboarding1Body',
       desc: '',
       args: [],
@@ -290,10 +290,10 @@ class S {
     );
   }
 
-  /// `Access breaking news and save articles. Share and discuss with your community, and delve into a world of knowledge on the go.`
+  /// `Access breaking news and save articles. Share and discuss with your community, and dive into a world of knowledge on the go.`
   String get onboarding3Body {
     return Intl.message(
-      'Access breaking news and save articles. Share and discuss with your community, and delve into a world of knowledge on the go.',
+      'Access breaking news and save articles. Share and discuss with your community, and dive into a world of knowledge on the go.',
       name: 'onboarding3Body',
       desc: '',
       args: [],
@@ -1615,6 +1615,86 @@ class S {
     return Intl.message(
       'Email verfication sent check your email and click on the link then press done to login.\nif the email not sent to you please press on Resend email.',
       name: 'emailVerficationDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You made too many requests within a window of time and have been rate limited. Back off for a while`
+  String get errorToManyRequests {
+    return Intl.message(
+      'You made too many requests within a window of time and have been rate limited. Back off for a while',
+      name: 'errorToManyRequests',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong on our side.`
+  String get serverError {
+    return Intl.message(
+      'Something went wrong on our side.',
+      name: 'serverError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Articles 100+`
+  String get articleCount {
+    return Intl.message(
+      'Articles 100+',
+      name: 'articleCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No internet conncetion`
+  String get noConnection {
+    return Intl.message(
+      'No internet conncetion',
+      name: 'noConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User not found`
+  String get userNotFound {
+    return Intl.message(
+      'User not found',
+      name: 'userNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The internet conncetion is not stable !`
+  String get internetNotStable {
+    return Intl.message(
+      'The internet conncetion is not stable !',
+      name: 'internetNotStable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An Error has occurred, please try again later !`
+  String get unKnownError {
+    return Intl.message(
+      'An Error has occurred, please try again later !',
+      name: 'unKnownError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your interests`
+  String get yourInterests {
+    return Intl.message(
+      'Your interests',
+      name: 'yourInterests',
       desc: '',
       args: [],
     );

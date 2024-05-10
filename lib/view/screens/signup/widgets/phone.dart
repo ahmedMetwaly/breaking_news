@@ -35,10 +35,10 @@ class _PhoneState extends State<Phone> {
     PhoneNumber number = PhoneNumber(isoCode: "eg");
     return InternationalPhoneNumberInput(
       onInputChanged: (PhoneNumber number) {
-        print(number.phoneNumber);
+        //print(number.phoneNumber);
       },
       onInputValidated: (bool value) {
-        print(value);
+        //print(value);
       },
       selectorConfig: const SelectorConfig(
         selectorType: PhoneInputSelectorType.DROPDOWN,
@@ -46,7 +46,7 @@ class _PhoneState extends State<Phone> {
       ignoreBlank: false,
       autoValidateMode: AutovalidateMode.onUserInteraction,
       
-      selectorTextStyle: TextStyle(color: Colors.black),
+      selectorTextStyle:const TextStyle(color: Colors.black),
       spaceBetweenSelectorAndTextField: SizeManager.sSpace,
       inputDecoration: InputDecoration(
         label: Text(S.current.phoneNumber),
@@ -63,7 +63,7 @@ class _PhoneState extends State<Phone> {
             color: ColorsManager.lightPrimary,
           )),
       onSaved: (PhoneNumber number) {
-        print('On Saved: $number');
+        //print('On Saved: $number');
       },
     );
   }

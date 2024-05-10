@@ -14,7 +14,7 @@ class ChangeProfileImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FirestoreBloc, FirestoreState>(
       builder: (context, state) {
-        print(state);
+        //print(state);
         if (state is UpdatindDataState) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(150),

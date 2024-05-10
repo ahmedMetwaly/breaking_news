@@ -23,7 +23,7 @@ class _NameState extends State<Name> {
         if (value!.isEmpty) {
           return S.current.requiredField;
         } else if (value.contains("[0-9]")) {
-          print(value);
+          //print(value);
           return S.current.notValidName;
         }
         return null;

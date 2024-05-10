@@ -38,13 +38,13 @@ class AuthenticationBloc
   FutureOr<void> _checkTheUserLogged(
       AppStarted event, Emitter<AuthenticationState> emit) async {
     final userFireBase = FirebaseAuth.instance.currentUser;
-    print("checking if the user is null or not");
+    // //print("checking if the user is null or not");
     if (userFireBase != null) {
       user = await FirestoreService().getUserData(userFireBase.uid);
-      print("user found loggedIn");
+      // //print("user found loggedIn");
       emit(AuthenticationSuccessState(user: user));
     } else {
-      print("No user");
+      //print("No user");
       emit(AuthLogOutState());
     }
   }
@@ -107,7 +107,7 @@ class AuthenticationBloc
     emit(AuthLoadingState());
     try {
       await FirebaseAuthService.signInWithGoogle().then((userFormGoogle) async {
-        print(userFormGoogle.uid);
+        //print(userFormGoogle.uid);
         if (userFormGoogle is UserModel) {
           await FirestoreService()
               .getUserData(userFormGoogle.uid ?? "0")
@@ -151,7 +151,7 @@ class AuthenticationBloc
     try {
       await FirebaseAuthService.signInWithFacebook()
           .then((userFormFacebook) async {
-        print(userFormFacebook.uid);
+        //print(userFormFacebook.uid);
         if (userFormFacebook is UserModel) {
           await FirestoreService()
               .getUserData(userFormFacebook.uid ?? "0")
@@ -185,7 +185,7 @@ class AuthenticationBloc
         }
       });
     } catch (error) {
-      print(error.toString());
+      //print(error.toString());
       emit(AuthenticationFailureState(errorMessage: error.toString()));
     }
   }

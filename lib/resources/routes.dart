@@ -3,7 +3,6 @@ class Routes {
   static const String onBoarding = "/onBoarding";
   static const String logIn = "/logIn";
   static const String home = "/home";
-  static const String initSettings = "/initSettings";
 
   static const String signUp = "/signUp";
   //the main screen

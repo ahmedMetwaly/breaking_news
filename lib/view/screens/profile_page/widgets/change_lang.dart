@@ -62,7 +62,7 @@ class ChangeLanguageWidget extends StatelessWidget {
                                 }
                               },
                             );
-                            
+
                             context.read<SharedPrefBloc>().changeLang("en");
                             Navigator.pop(context);
                           },
@@ -70,7 +70,6 @@ class ChangeLanguageWidget extends StatelessWidget {
                         ),
                         ListTile(
                           onTap: () {
-               
                             BlocListener<AuthenticationBloc,
                                 AuthenticationState>(
                               listener: (BuildContext context,

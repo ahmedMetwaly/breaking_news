@@ -1,5 +1,6 @@
 import 'package:breaking_news/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import '../../generated/l10n.dart';
@@ -8,9 +9,9 @@ class FirebaseAuthService {
   static userState() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        print('User is currently signed out!');
+        //print('User is currently signed out!');
       } else {
-        print('User is signed in!\nemial:${user.email}');
+        //print('User is signed in!\nemial:${user.email}');
       }
     });
   }
@@ -33,13 +34,15 @@ class FirebaseAuthService {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return S.current.passErrorSignUp;
-        // print('The password provided is too weak.');
+        // //print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
         return S.current.emailErrorSignUp;
-        //print('The account already exists for that email.');
+        ////print('The account already exists for that email.');
+      } else {
+        return S.current.connectionError;
       }
     } catch (e) {
-      return e;
+      return e.toString();
     }
   }
 
@@ -58,14 +61,16 @@ class FirebaseAuthService {
           emailVerfied: credential.user?.emailVerified ?? false,
           password: '');
     } on FirebaseAuthException catch (e) {
-      // print("login exception : ${e.code}");
+      // //print("login exception : ${e.code}");
       if (e.code == "invalid-credential") {
         return S.current.loginError;
       }
       if (e.code == 'user-not-found') {
-        return S.current.noUser;
+        return S.current.userNotFound;
       } else if (e.code == 'wrong-password') {
         return S.current.wrongPass;
+      } else {
+        return S.current.connectionError;
       }
     } catch (e) {
       return e;
@@ -78,6 +83,7 @@ class FirebaseAuthService {
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
+
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount!.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
@@ -93,8 +99,14 @@ class FirebaseAuthService {
           phoneNumber: user.user?.phoneNumber ?? "",
           emailVerfied: user.user?.emailVerified ?? false,
           password: '');
-    } catch (e) {
-      return e.toString();
+    } on PlatformException catch (e) {
+      if (e.code == "network_error") {
+        throw Exception(S.current.connectionError);
+      }
+
+      //return e.toString();
+    } catch (error) {
+      return error.toString();
     }
   }
 
@@ -102,6 +114,9 @@ class FirebaseAuthService {
     try {
       // Trigger the sign-in flow
       final LoginResult loginResult = await FacebookAuth.instance.login();
+      if (loginResult.accessToken == null) {
+        throw Exception(S.current.connectionError);
+      }
       // Create a credential from the access token
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(loginResult.accessToken!.token);
@@ -116,8 +131,19 @@ class FirebaseAuthService {
           phoneNumber: user.user?.phoneNumber ?? "",
           emailVerfied: user.user?.emailVerified ?? false,
           password: '');
-    } catch (error) {
-      return error.toString();
+    } on FirebaseAuthException catch (e) {
+      //print("error from email verfication");
+      if (e.code == "invalid-credential") {
+        return S.current.loginError;
+      }
+      if (e.code == 'user-not-found') {
+        return S.current.userNotFound;
+      } else if (e.code == 'wrong-password') {
+        return S.current.wrongPass;
+      } else {
+        return S.current.connectionError;
+      }
+      // return e.toString();
     }
   }
 
@@ -126,16 +152,18 @@ class FirebaseAuthService {
     await GoogleSignIn().signOut();
   }
 
- 
   static Future forgotPassword(String email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       return true;
     } on FirebaseAuthException catch (e) {
+      if (e.code == "invalid-credential") {
+        return S.current.loginError;
+      }
       if (e.code == 'user-not-found') {
-        return S.current.noUser;
+        return S.current.userNotFound;
       } else {
-        return e.toString();
+        return S.current.connectionError;
       }
     }
   }
@@ -144,9 +172,19 @@ class FirebaseAuthService {
     try {
       await FirebaseAuth.instance.currentUser?.sendEmailVerification();
       return true;
-    } catch (e) {
-      print("error from email verfication");
-      return e.toString();
+    } on FirebaseAuthException catch (e) {
+      //print("error from email verfication");
+      if (e.code == "invalid-credential") {
+        return S.current.loginError;
+      }
+      if (e.code == 'user-not-found') {
+        return S.current.userNotFound;
+      } else if (e.code == 'wrong-password') {
+        return S.current.wrongPass;
+      } else {
+        return S.current.connectionError;
+      }
+      // return e.toString();
     }
   }
 }

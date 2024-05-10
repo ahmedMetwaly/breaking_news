@@ -1,7 +1,5 @@
 import 'package:breaking_news/bloc/authentication/authentication_bloc.dart';
-import 'package:breaking_news/resources/image_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:breaking_news/model/article_model.dart';
 import 'package:breaking_news/resources/values_manager.dart';
@@ -10,7 +8,6 @@ import '../../../bloc/intersted_topics/intersted_topics_bloc.dart';
 import '../../../bloc/intersted_topics/intersted_topics_state.dart';
 import '../../../bloc/intersted_topics/intersted_topicss_event.dart';
 import '../../../generated/l10n.dart';
-import '../../widgets/elevated_button.dart';
 import 'widgets/article.dart';
 import "dart:math";
 
@@ -50,13 +47,18 @@ class HomePage extends StatelessWidget {
       return SliverPersistentHeader(
         pinned: true,
         delegate: _SliverAppBarDelegate(
-          minHeight: 85.0,
-          maxHeight: 85.0,
+          minHeight: 75.0,
+          maxHeight: 75.0,
           child: Container(
               color: Theme.of(context).colorScheme.background,
-              child: Text(
-                headerText,
-                style: Theme.of(context).textTheme.headlineMedium,
+              child: Align(
+                alignment: Localizations.localeOf(context).languageCode == "en"
+                    ? Alignment.centerLeft
+                    : Alignment.centerRight,
+                child: Text(
+                  headerText,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
               )),
         ),
       );
@@ -86,42 +88,15 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: BlocBuilder<InterstedTopicsBloc, InterstedTopicsState>(
+      body: BlocConsumer<InterstedTopicsBloc, InterstedTopicsState>(
         builder: (context, state) {
-          print(state);
+          //print(state);
           if (state is InitialState) {
             context.read<InterstedTopicsBloc>().country =
                 AuthenticationBloc.user.country ?? "us";
             context.read<InterstedTopicsBloc>().interstedTopics =
                 AuthenticationBloc.user.interstedTopics ?? ["general"];
             context.read<InterstedTopicsBloc>().add(GetInterstedTopics());
-          }
-          if (state is LoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is FailureState) {
-            return SafeArea(
-                child: Padding(
-                    padding: const EdgeInsets.all(PaddingManager.pMainPadding),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Spacer(),
-                          Text(S.current.connectionError),
-                          Image.asset(ImageManager.business),
-                          const Spacer(),
-                          MyElevatedButton(
-                            onPress: () {
-                              context
-                                  .read<InterstedTopicsBloc>()
-                                  .add(GetInterstedTopics());
-                            },
-                            title: S.current.retry,
-                          ),
-                        ])));
           }
           if (state is SuccessState && state.interstedTopics.isNotEmpty) {
             return SafeArea(
@@ -139,7 +114,7 @@ class HomePage extends StatelessWidget {
                           getInterstedTopics(
                               AuthenticationBloc.user.interstedTopics?[0] ??
                                   ""),
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
                     ),
@@ -160,7 +135,7 @@ class HomePage extends StatelessWidget {
                                           ""),
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headlineMedium,
+                                          .headlineMedium!.copyWith(color: Theme.of(context).colorScheme.primary),
                                     )
                                   : Text(
                                       getInterstedTopics(AuthenticationBloc
@@ -168,16 +143,15 @@ class HomePage extends StatelessWidget {
                                           ""),
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headlineMedium,
+                                          .headlineMedium!.copyWith(color: Theme.of(context).colorScheme.primary),
                                     ),
                         );
                       },
                       itemBuilder: (ctx, index) => ListView.separated(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        separatorBuilder: (ctx, index) => const SizedBox(
-                          height: SizeManager.sSpace,
-                        ),
+                        separatorBuilder: (ctx, index) =>
+                            const SizedBox(height: SizeManager.sSpace),
                         itemCount:
                             state.interstedTopics[index].articles?.length ?? 0,
                         itemBuilder: (ctx, indx) => Article(
@@ -210,6 +184,35 @@ class HomePage extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
+        },
+        listener: (BuildContext context, InterstedTopicsState state) {
+          if (state is FailureState) {
+            showDialog<bool>(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(S.current.error),
+                  content: Text(state.errorMessage),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, true);
+                          context.read<InterstedTopicsBloc>().country =
+                              AuthenticationBloc.user.country ?? "us";
+                          context.read<InterstedTopicsBloc>().interstedTopics =
+                              AuthenticationBloc.user.interstedTopics ??
+                                  ["general"];
+                          context
+                              .read<InterstedTopicsBloc>()
+                              .add(GetInterstedTopics());
+                        },
+                        child: Text(S.current.retry)),
+                  ],
+                );
+              },
+            );
+          }
         },
       ),
     );

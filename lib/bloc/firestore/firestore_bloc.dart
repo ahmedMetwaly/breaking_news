@@ -81,7 +81,7 @@ class FirestoreBloc extends Bloc<FirestoreEvents, FirestoreState> {
           .uploadImage(
               userId: AuthenticationBloc.user.uid ?? "0", image: profileImage)
           .then((value) {
-            print("image uploaded");
+            //print("image uploaded");
             AuthenticationBloc.user.imageUrl = value;
             return emit(UpdatedUserDataState(user: AuthenticationBloc.user));
           });

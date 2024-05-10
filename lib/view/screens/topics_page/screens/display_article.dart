@@ -7,7 +7,9 @@ import 'package:breaking_news/generated/l10n.dart';
 import 'package:breaking_news/model/article_model.dart';
 import 'package:breaking_news/view/widgets/fav_btn.dart';
 import 'package:breaking_news/view/widgets/image_from_network.dart';
+import '../../../../bloc/authentication/authentication_bloc.dart';
 import '../../../../bloc/firestore/firestore_bloc.dart';
+import '../../../../bloc/firestore/firestore_event.dart';
 import '../../../../resources/values_manager.dart';
 
 class DisplayArticle extends StatelessWidget {
@@ -18,12 +20,13 @@ class DisplayArticle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<FirestoreBloc, FirestoreState>(
+      body: BlocConsumer<FirestoreBloc, FirestoreState>(
         builder: (BuildContext context, FirestoreState state) {
+          //print(state);
           if (state is UpdatindDataState) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (state is UpdateFailedDataState) {
+          /*      if (state is UpdateFailedDataState) {
             showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -37,7 +40,7 @@ class DisplayArticle extends StatelessWidget {
                             child: Text(S.current.ok)),
                       ],
                     ));
-          }
+          } */
 
           return CustomScrollView(
             slivers: [
@@ -78,15 +81,13 @@ class DisplayArticle extends StatelessWidget {
                                     .bodyMedium!
                                     .copyWith(
                                       fontSize: 15,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .background,
+                                      color: Colors.white,
                                       shadows: [
                                         Shadow(
                                             color: Theme.of(context)
                                                 .colorScheme
                                                 .surface,
-                                            blurRadius: 10,
+                                            blurRadius: 8,
                                             offset: SizeManager.boxShadowOffset)
                                       ],
                                       fontWeight: FontWeight.w600,
@@ -209,6 +210,32 @@ class DisplayArticle extends StatelessWidget {
           /*  return const Center(
             child: CircularProgressIndicator(),
           ); */
+        },
+        listener: (BuildContext context, FirestoreState state) {
+          if (state is UpdateFailedDataState) {
+            showDialog<bool>(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text(S.current.error),
+                  content: Text(state.errorMessage),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, true);
+                          AuthenticationBloc.user.history!.insert(0, article);
+                          //print(AuthenticationBloc.user.history);
+                          context
+                              .read<FirestoreBloc>()
+                              .add(UserUpdateDataEvent());
+                        },
+                        child: Text(S.current.retry)),
+                  ],
+                );
+              },
+            );
+          }
         },
       ),
     );

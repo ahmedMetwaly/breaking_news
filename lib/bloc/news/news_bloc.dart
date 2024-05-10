@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:breaking_news/model/article_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:breaking_news/bloc/news/news_state.dart';
 import 'package:breaking_news/services/api/api_services.dart';
@@ -20,9 +21,13 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     emit(LoadingState());
     await ApiServices.getTopHeadlineData(
             country: country, specificTopic: specificTopic)
-        .then((value) => emit(SuccessState(
-              specificTopic: value,
-            )));
-    //print(response.articles);
+        .then((value) {
+      if (value is ResponseModel) {
+        emit(SuccessState(specificTopic: value));
+      } else {
+        emit(ErrorState(error: value.toString()));
+      }
+    });
+    ////print(response.articles);
   }
 }

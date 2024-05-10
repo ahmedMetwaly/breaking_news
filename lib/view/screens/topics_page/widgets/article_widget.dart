@@ -26,7 +26,7 @@ class ArticleWidget extends StatelessWidget {
               onTap: () {
                 if (state is AuthenticationSuccessState) {
                   AuthenticationBloc.user.history!.insert(0, article);
-                  print(AuthenticationBloc.user.history);
+                  //print(AuthenticationBloc.user.history);
                   context.read<FirestoreBloc>().add(UserUpdateDataEvent());
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => DisplayArticle(article: article),

@@ -63,7 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
-
+@override
+  void dispose() {
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     List<Widget> screens = const [
@@ -128,8 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
-                elevation: SizeManager.elevationOfBNB,
-                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              
                 items: items,
                 currentIndex: currentIndex,
                 onTap: (index) {

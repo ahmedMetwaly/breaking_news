@@ -46,13 +46,11 @@ class TopicsPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: const SizedBox(),
-          
+          leadingWidth: 0,
           title: Padding(
             padding: const EdgeInsets.all(PaddingManager.pMainPadding),
-            child: Text(
-              S.current.topics,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
+            child: Text(S.current.topics,
+                style: Theme.of(context).textTheme.headlineMedium),
           ),
         ),
         body: SafeArea(

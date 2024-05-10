@@ -42,7 +42,7 @@ class AppStarts extends StatelessWidget {
                                 shadows: [
                               BoxShadow(
                                   color: Theme.of(context).colorScheme.surface,
-                                  offset: Offset(1, 3),
+                                  offset: const Offset(1, 3),
                                   blurRadius: 10,
                                   spreadRadius: 20)
                             ]),

@@ -6,7 +6,7 @@ import '../../services/sharedprefrences_service/sharedprefrences_service.dart';
 class SharedPrefBloc extends Cubit<SettingsStates> {
   SharedPrefBloc() : super(SettingsInitial());
 
-  bool isDark = false;
+  static bool isDark = false;
   bool isOpenedBefore = false;
   String lang = "en";
 
@@ -25,13 +25,13 @@ class SharedPrefBloc extends Cubit<SettingsStates> {
           await SharedPrefrencesService.getStringFromSF("lang")
               .then((value) => lang = value ?? "en");
         }
-        print(
-            "isOpenBefore: $isOpenedBefore\nisDark : $isDark\nlanguage : $lang");
+        //print(
+        //    "isOpenBefore: $isOpenedBefore\nisDark : $isDark\nlanguage : $lang");
         emit(SettingsLoadedSuccessfully(
             isOpenedBefore: isOpenedBefore, isDark: isDark, language: lang));
       });
     } catch (error) {
-      Exception("error $error");
+      //Exception("error $error");
       emit(SettingsError(errorMsg: error.toString()));
     }
   }
@@ -43,7 +43,7 @@ class SharedPrefBloc extends Cubit<SettingsStates> {
       await SharedPrefrencesService.addBoolToSF("isDark", isDarkFunction).then(
           (value) => emit(SettingsLoadedSuccessfully(isDark: isDarkFunction)));
     } catch (error) {
-      Exception("error $error");
+      //Exception("error $error");
       emit(SettingsError(errorMsg: error.toString()));
     }
   }
@@ -55,7 +55,7 @@ class SharedPrefBloc extends Cubit<SettingsStates> {
       await SharedPrefrencesService.addStringToSF("lang", language).then(
           (value) => emit(SettingsLoadedSuccessfully(language: language)));
     } catch (error) {
-      Exception("error $error");
+    //  Exception("error $error");
       emit(SettingsError(errorMsg: error.toString()));
     }
   }

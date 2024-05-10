@@ -14,16 +14,16 @@ class ChangeTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SharedPrefBloc, SettingsStates>(
         builder: (context, state) {
-          print(state);
+          //print(state);
           if(state is LoadingSettings){
             return const Center(child : CircularProgressIndicator());
           }
 
       return SwitchListTile(
         contentPadding: const EdgeInsets.all(0),
-        value: context.read<SharedPrefBloc>().isDark,
+        value:  SharedPrefBloc.isDark ,
         onChanged: (value) {
-          print(value);
+          //print(value);
           context.read<SharedPrefBloc>().changeTheme(value);
         },
         title: Text(
@@ -31,7 +31,7 @@ class ChangeTheme extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         subtitle: Text(
-          context.read<SharedPrefBloc>().isDark ? S.current.darkMode : S.current.lightMode,
+          SharedPrefBloc.isDark ? S.current.darkMode : S.current.lightMode,
           style: Theme.of(context).textTheme.bodySmall,
         ),
       );

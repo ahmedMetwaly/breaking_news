@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("News"),
         "ar": MessageLookupByLibrary.simpleMessage("Argentina"),
         "arLang": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "articleCount": MessageLookupByLibrary.simpleMessage("Articles 100+"),
         "at": MessageLookupByLibrary.simpleMessage("Austria"),
         "au": MessageLookupByLibrary.simpleMessage("Australia"),
         "be": MessageLookupByLibrary.simpleMessage("Belgium"),
@@ -81,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enLang": MessageLookupByLibrary.simpleMessage("English"),
         "entertainment": MessageLookupByLibrary.simpleMessage("Entertainment"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "errorToManyRequests": MessageLookupByLibrary.simpleMessage(
+            "You made too many requests within a window of time and have been rate limited. Back off for a while"),
         "exit":
             MessageLookupByLibrary.simpleMessage("Press back again to exit"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
@@ -108,6 +111,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ie": MessageLookupByLibrary.simpleMessage("Ireland"),
         "il": MessageLookupByLibrary.simpleMessage("Israel"),
         "india": MessageLookupByLibrary.simpleMessage("India"),
+        "internetNotStable": MessageLookupByLibrary.simpleMessage(
+            "The internet conncetion is not stable !"),
         "it": MessageLookupByLibrary.simpleMessage("Italy"),
         "jp": MessageLookupByLibrary.simpleMessage("Japan"),
         "kr": MessageLookupByLibrary.simpleMessage("South Korea"),
@@ -136,6 +141,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "nl": MessageLookupByLibrary.simpleMessage("Netherlands"),
         "no": MessageLookupByLibrary.simpleMessage("Norway"),
         "noBack": MessageLookupByLibrary.simpleMessage("No back history found"),
+        "noConnection":
+            MessageLookupByLibrary.simpleMessage("No internet conncetion"),
         "noFavorite": MessageLookupByLibrary.simpleMessage(
             "You don\'t have a favorite yet!"),
         "noForward":
@@ -150,15 +157,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "nz": MessageLookupByLibrary.simpleMessage("New Zealand"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "onboarding1Body": MessageLookupByLibrary.simpleMessage(
-            "Stay ahead of the curve with NewsNow! Personalize your news feed, receive breaking news alerts, and explore a world of information at your fingertips"),
+            "Stay ahead of the curve with News! Personalize your news feed, receive breaking news alerts, and explore a world of information at your fingertips"),
         "onboarding1Title":
-            MessageLookupByLibrary.simpleMessage("Welcome to the NewsNow App"),
+            MessageLookupByLibrary.simpleMessage("Welcome to the News App"),
         "onboarding2Body": MessageLookupByLibrary.simpleMessage(
             "Customize your news experience by choosing your favorite topics. From global events to niche interests, our app covers it all."),
         "onboarding2Title":
             MessageLookupByLibrary.simpleMessage("Explore the World of News"),
         "onboarding3Body": MessageLookupByLibrary.simpleMessage(
-            "Access breaking news and save articles. Share and discuss with your community, and delve into a world of knowledge on the go."),
+            "Access breaking news and save articles. Share and discuss with your community, and dive into a world of knowledge on the go."),
         "onboarding3Title":
             MessageLookupByLibrary.simpleMessage("Stay Informed, Anywhere"),
         "passErrorSignUp": MessageLookupByLibrary.simpleMessage(
@@ -193,6 +200,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectLanguage":
             MessageLookupByLibrary.simpleMessage("Select language"),
         "sent": MessageLookupByLibrary.simpleMessage("Sent"),
+        "serverError": MessageLookupByLibrary.simpleMessage(
+            "Something went wrong on our side."),
         "sg": MessageLookupByLibrary.simpleMessage("Singapore"),
         "si": MessageLookupByLibrary.simpleMessage("Slovenia"),
         "signUpWithSc":
@@ -212,14 +221,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "trend": MessageLookupByLibrary.simpleMessage("Trending topic today"),
         "tw": MessageLookupByLibrary.simpleMessage("Taiwan"),
         "ua": MessageLookupByLibrary.simpleMessage("Ukraine"),
+        "unKnownError": MessageLookupByLibrary.simpleMessage(
+            "An Error has occurred, please try again later !"),
         "us": MessageLookupByLibrary.simpleMessage("United States"),
         "usa": MessageLookupByLibrary.simpleMessage("USA"),
         "userError":
             MessageLookupByLibrary.simpleMessage("User name not found!"),
+        "userNotFound": MessageLookupByLibrary.simpleMessage("User not found"),
         "ve": MessageLookupByLibrary.simpleMessage("Venezuela"),
         "wrong": MessageLookupByLibrary.simpleMessage("Wrong"),
         "wrongPass": MessageLookupByLibrary.simpleMessage(
             "Wrong password provided for that user."),
+        "yourInterests": MessageLookupByLibrary.simpleMessage("Your interests"),
         "za": MessageLookupByLibrary.simpleMessage("South Africa")
       };
 }

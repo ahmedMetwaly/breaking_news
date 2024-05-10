@@ -23,62 +23,62 @@ class InitSettingsBloc extends Cubit<InitializeState> {
   final Map<String,String> languages = {"en":S.current.enLang, "ar":"العربية"};
   List<bool> languageValues = [false, false];
 
-  final Map<String, String> countries = {
-    "ae": S.current.ae,
-    "ar": S.current.ar,
-    "at": S.current.at,
-    "au": S.current.au,
-    "be": S.current.be,
-    "bg": S.current.bg,
-    "br": S.current.br,
-    "ca": S.current.ca,
-    "ch": S.current.ch,
-    "cn": S.current.cn,
-    "co": S.current.co,
-    "cu": S.current.cu,
-    "cz": S.current.cz,
-    "de": S.current.de,
-    "eg": S.current.eg,
-    "fr": S.current.fr,
-    "gb": S.current.gb,
-    "gr": S.current.gr,
-    "hk": S.current.hk,
-    "hu": S.current.hu,
-    "id": S.current.id,
-    "ie": S.current.ie,
-    "il": S.current.il,
-    "in": S.current.india,
-    "it": S.current.it,
-    "jp": S.current.jp,
-    "kr": S.current.kr,
-    "lt": S.current.lt,
-    "lv": S.current.lv,
-    "ma": S.current.ma,
-    "mx": S.current.mx,
-    "my": S.current.my,
-    "ng": S.current.ng,
-    "nl": S.current.nl,
-    "no": S.current.no,
-    "nz": S.current.nz,
-    "ph": S.current.ph,
-    "pl": S.current.pl,
-    "pt": S.current.pt,
-    "ro": S.current.ro,
-    "rs": S.current.rs,
-    "ru": S.current.ru,
-    "sa": S.current.sa,
-    "se": S.current.se,
-    "sg": S.current.sg,
-    "si": S.current.si,
-    "sk": S.current.sk,
-    "th": S.current.th,
-    "tr": S.current.tr,
-    "tw": S.current.tw,
-    "ua": S.current.ua,
-    "us": S.current.us,
-    "ve": S.current.ve,
-    "za": S.current.za,
-  };
+   List<String> countries = [
+    "ae",
+    "ar",
+    "at",
+    "au",
+    "be",
+    "bg",
+    "br",
+    "ca",
+    "ch",
+    "cn",
+    "co",
+    "cu",
+    "cz",
+    "de",
+    "eg",
+    "fr",
+    "gb",
+    "gr",
+    "hk",
+    "hu",
+    "id",
+    "ie",
+    "il",
+    "in",
+    "it",
+    "jp",
+    "kr",
+    "lt",
+    "lv",
+    "ma",
+    "mx",
+    "my",
+    "ng",
+    "nl",
+    "no",
+    "nz",
+    "ph",
+    "pl",
+    "pt",
+    "ro",
+    "rs",
+    "ru",
+    "sa",
+    "se",
+    "sg",
+    "si",
+    "sk",
+    "th",
+    "tr",
+    "tw",
+    "ua",
+    "us",
+    "ve",
+    "za",
+  ];
   List<bool> countriesValues = List.generate(54, (index) => false);
   String interstedCountry = "us";
 
@@ -90,7 +90,7 @@ class InitSettingsBloc extends Cubit<InitializeState> {
       interstedTopics
           .removeWhere((element) => element == topics.keys.elementAt(index));
     }
-    print(interstedTopics);
+    //print(interstedTopics);
     emit(InitializedState(interstedTopics: interstedTopics));
   }
 
@@ -105,7 +105,7 @@ class InitSettingsBloc extends Cubit<InitializeState> {
   }
 
   void chooseCountries(String selectedCountry) {
-    //print(countries.length);
+    ////print(countries.length);
     interstedCountry = selectedCountry;
     emit(InitializedState(country: interstedCountry));
   }

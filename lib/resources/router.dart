@@ -3,7 +3,6 @@ import "package:breaking_news/view/screens/profile_page/screens/history.dart";
 import "package:breaking_news/view/screens/signup/screens/veify_email.dart";
 import "package:flutter/material.dart";
 import "package:breaking_news/view/screens/home_screen/home_screen.dart";
-import "package:breaking_news/view/screens/init_settings/init_settings.dart";
 import "package:breaking_news/view/screens/splash_screen/splash_screen.dart";
 import "package:breaking_news/view/screens/topics_page/screens/display_topic_articles.dart";
 
@@ -23,8 +22,7 @@ class RoutesGeneratour {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoarding());
-      case Routes.initSettings:
-        return MaterialPageRoute(builder: (_) => const InitSettings());
+
       case Routes.signUp:
         return MaterialPageRoute(builder: (_) => const SignUp());
 

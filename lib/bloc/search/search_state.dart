@@ -9,4 +9,8 @@ class SuccessState extends SearchState{
 
   SuccessState({required this.searchResult});
 }
-class FailedState extends SearchState{}
+class FailedState extends SearchState{
+  final String error ;
+
+  FailedState({required this.error});
+}

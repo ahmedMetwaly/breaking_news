@@ -27,13 +27,11 @@ void main() async {
   await FirebaseAppCheck.instance.activate(); // Ensure activation.
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
-      create: (context) => SharedPrefBloc()..appStarted(),
-      lazy: false,
-    ),
+        create: (context) => SharedPrefBloc()..appStarted(), lazy: false),
+   
     BlocProvider(
-      create: (context) => AuthenticationBloc()..add(AppStarted()),
-      lazy: false,
-    ),
+        create: (context) => AuthenticationBloc()..add(AppStarted()),
+        lazy: false),
     BlocProvider(create: (context) => FirestoreBloc()),
     BlocProvider(create: (context) => InitSettingsBloc()),
     BlocProvider(create: (context) => NewsBloc()),
@@ -48,21 +46,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SharedPrefBloc, SettingsStates>(
-        builder:  (context, state) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          locale: Locale(context.read<SharedPrefBloc>().lang),
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          initialRoute: Routes.splashScreen,
-          onGenerateRoute: RoutesGeneratour.getRoute,
-          theme: context.read<SharedPrefBloc>().isDark
-              ? ThemeManager.darkTheme
-              : ThemeManager.lightTheme,
-        ));
+        builder: (context, state) => MaterialApp(
+              debugShowCheckedModeBanner: false,
+              locale: Locale(context.read<SharedPrefBloc>().lang),
+              localizationsDelegates: const [
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              initialRoute: Routes.splashScreen,
+              onGenerateRoute: RoutesGeneratour.getRoute,
+              theme:SharedPrefBloc.isDark
+                  ? ThemeManager.darkTheme
+                  : ThemeManager.lightTheme,
+            ));
   }
 }

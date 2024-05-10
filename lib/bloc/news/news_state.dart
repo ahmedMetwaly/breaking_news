@@ -6,7 +6,10 @@ class InitialState extends NewsState {}
 
 class LoadingState extends NewsState {}
 
-class ErrorState extends NewsState {}
+class ErrorState extends NewsState {
+  ErrorState({required this.error});
+  String error;
+}
 
 class SuccessState extends NewsState {
   SuccessState({this.specificTopic});

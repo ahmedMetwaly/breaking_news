@@ -29,7 +29,7 @@ class LogIn extends StatelessWidget {
         padding: const EdgeInsets.all(PaddingManager.pMainPadding),
         child: BlocConsumer<AuthenticationBloc, AuthenticationState>(
           builder: (BuildContext context, AuthenticationState state) {
-            print(state);
+            //print(state);
             return Form(
               key: formKey,
               child: SingleChildScrollView(
@@ -91,7 +91,7 @@ class LogIn extends StatelessWidget {
                               context
                                   .read<AuthenticationBloc>()
                                   .add(AuthLogInEvent());
-                            } 
+                            }
                           },
                         ),
                       ],
@@ -207,14 +207,7 @@ class LogIn extends StatelessWidget {
             if (state is AuthenticationSuccessState &&
                 FirebaseAuth.instance.currentUser!.emailVerified == true) {
               Navigator.pop(context);
-              if (state.initializedSettings == null) {
-                Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
-              } else if (state.initializedSettings != null &&
-                  state.initializedSettings == true) {
-                Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
-              } else {
-                Navigator.of(context).pushReplacementNamed(Routes.initSettings);
-              }
+              Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
             }
             if (state is AuthenticationSuccessState &&
                 FirebaseAuth.instance.currentUser!.emailVerified == false) {
@@ -226,5 +219,4 @@ class LogIn extends StatelessWidget {
       )),
     );
   }
-
 }

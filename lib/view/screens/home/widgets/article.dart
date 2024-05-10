@@ -23,7 +23,7 @@ class Article extends StatelessWidget {
         onTap: () {
           if (state is AuthenticationSuccessState) {
             AuthenticationBloc.user.history!.insert(0, articleModel);
-            print(AuthenticationBloc.user.history);
+            //print(AuthenticationBloc.user.history);
             context.read<FirestoreBloc>().add(UserUpdateDataEvent());
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => DisplayArticle(article: articleModel),
@@ -35,7 +35,7 @@ class Article extends StatelessWidget {
           }
         },
         child: SizedBox(
-          height: 80,
+          height: 83,
           width: double.infinity,
           child: Row(
             children: [
@@ -45,7 +45,7 @@ class Article extends StatelessWidget {
                   borderRadius: BorderRadius.circular(SizeManager.radiusOfBNB),
                   child: ImageFromNetwork(
                     imagePath: articleModel.imageUrl ?? "",
-                    height: 80,
+                    height: 83,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -67,7 +67,7 @@ class Article extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
-                          .copyWith(fontSize: 19, fontWeight: FontWeight.w900),
+                          .copyWith(fontSize: 18, fontWeight: FontWeight.w600),
                     ),
                     Text(
                       articleModel.author ?? "",

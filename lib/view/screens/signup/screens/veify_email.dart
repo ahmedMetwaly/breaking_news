@@ -3,6 +3,7 @@ import 'package:breaking_news/bloc/authentication/authentication_state.dart';
 import 'package:breaking_news/resources/routes.dart';
 import 'package:breaking_news/resources/values_manager.dart';
 import 'package:breaking_news/view/widgets/elevated_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gif_view/gif_view.dart';
@@ -17,18 +18,14 @@ class VerifyEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late GifController gifController;
-    gifController = GifController(onFrame: (value) => value==24 ? gifController.pause():null);
-  
+    gifController = GifController(
+        onFrame: (value) => value == 24 ? gifController.pause() : null);
+
     context.read<AuthenticationBloc>().add(AuthSendEmailVerfication());
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 0,
         leading: const SizedBox(),
-        /* actions: [
-          IconButton(
-              onPressed: () => Navigator.of(context).pop(),
-              icon: const Icon(Icons.close))
-        ], */
       ),
       body: SafeArea(
           child: Padding(
@@ -54,9 +51,21 @@ class VerifyEmail extends StatelessWidget {
                     );
                   },
                 ); */
-                Navigator.of(context).canPop()
+                /* Navigator.of(context).canPop()
                     ? Navigator.of(context).pop()
-                    : null;
+                    : null; */
+               /*  if (FirebaseAuth.instance.currentUser!.emailVerified) {
+                  Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
+                } else {
+                  Navigator.of(context)
+                      .pushReplacementNamed(Routes.verifyEmail);
+
+                  /*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                    S.current.emailVerficationSent,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ))); */
+                } */
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(
                   S.current.emailVerficationSent,
@@ -108,7 +117,12 @@ class VerifyEmail extends StatelessWidget {
               MyElevatedButton(
                   title: S.current.done,
                   onPress: () {
-                    Navigator.of(context).pushReplacementNamed(Routes.logIn);
+                    if (FirebaseAuth.instance.currentUser!.emailVerified==true) {
+                      Navigator.of(context)
+                          .pushReplacementNamed(Routes.homeScreen);
+                    } else {
+                      Navigator.of(context).pushReplacementNamed(Routes.logIn);
+                    }
                   }),
               const SizedBox(height: SizeManager.sSpace16),
               TextButton(

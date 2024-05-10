@@ -76,7 +76,7 @@ class ForgetPassword extends StatelessWidget {
                     title: S.current.confirm,
                     onPress: () {
                       if (formKey.currentState!.validate()) {
-                        print("validate");
+                        //print("validate");
                         AuthenticationBloc.user.email = email.text.trim();
                         context
                             .read<AuthenticationBloc>()

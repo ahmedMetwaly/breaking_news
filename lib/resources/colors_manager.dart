@@ -14,5 +14,8 @@ class ColorsManager {
   static const Color blue = Colors.blue;
 
 
-  static const Color backgroundDark = Color(0xFF010548);
+  static const Color backgroundDark = Color(0xFF222831);
+  static const Color primaryDark =/*  Color(0xFFF05454); */Colors.yellow;
+  static const Color onPrimaryDark = Color(0xFF30475E);
+
 }

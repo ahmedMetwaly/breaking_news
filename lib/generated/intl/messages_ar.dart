@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("الأخبار"),
         "ar": MessageLookupByLibrary.simpleMessage("الأرجنتين"),
         "arLang": MessageLookupByLibrary.simpleMessage("العربية"),
+        "articleCount": MessageLookupByLibrary.simpleMessage("أكثر من 100+"),
         "at": MessageLookupByLibrary.simpleMessage("النمسا"),
         "au": MessageLookupByLibrary.simpleMessage("أستراليا"),
         "be": MessageLookupByLibrary.simpleMessage("بلجيكا"),
@@ -37,10 +38,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "ca": MessageLookupByLibrary.simpleMessage("كندا"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "ch": MessageLookupByLibrary.simpleMessage("سويسرا"),
+        "checkYourEmail": MessageLookupByLibrary.simpleMessage(
+            "تم إرسال بريد إلكتروني لإعادة ضبط كلمة المرور. تحقق من حسابك."),
+        "clear": MessageLookupByLibrary.simpleMessage("حذف جميع العناصر"),
         "cn": MessageLookupByLibrary.simpleMessage("الصين"),
         "co": MessageLookupByLibrary.simpleMessage("كولومبيا"),
+        "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
         "confirmDelete": MessageLookupByLibrary.simpleMessage("تأكيد الحذف"),
+        "confirmLogout":
+            MessageLookupByLibrary.simpleMessage("تأكيد تسجيل الخروج"),
+        "confirmPasssword":
+            MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
+        "connectionError": MessageLookupByLibrary.simpleMessage(
+            "يرجى التحقق من اتصالك بالإنترنت"),
         "content": MessageLookupByLibrary.simpleMessage("محتوى"),
+        "continueAsGuest":
+            MessageLookupByLibrary.simpleMessage("أو المتابعة كـ"),
         "cu": MessageLookupByLibrary.simpleMessage("كوبا"),
         "cz": MessageLookupByLibrary.simpleMessage("جمهورية التشيك"),
         "darkMode": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
@@ -50,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هل تريد حذف هذا العنصر؟"),
         "discover": MessageLookupByLibrary.simpleMessage("اكتشف أحدث الأخبار"),
         "done": MessageLookupByLibrary.simpleMessage("تم"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "eg": MessageLookupByLibrary.simpleMessage("مصر"),
         "egypt": MessageLookupByLibrary.simpleMessage("مصر"),
         "email": MessageLookupByLibrary.simpleMessage("حساب"),
@@ -57,16 +72,30 @@ class MessageLookup extends MessageLookupByLibrary {
             "البريد الإلكتروني موجود بالفعل، جرب التسجيل ببريد إلكتروني آخر."),
         "emailNotFound":
             MessageLookupByLibrary.simpleMessage("البريد الإلكتروني غير موجود"),
+        "emailRequired": MessageLookupByLibrary.simpleMessage(
+            "من فضلك أدخل بريد إلكتروني صالح!"),
+        "emailVerficationDescription": MessageLookupByLibrary.simpleMessage(
+            "تم إرسال رسالة التحقق بالبريد الإلكتروني. يرجى التحقق من بريدك الإلكتروني والنقر فوق الرابط ثم الضغط على تم للتسجيل الدخول.\n في حال لم يتم إرسال البريد الإلكتروني إليك ، يرجى الضغط على إعادة إرسال البريد الإلكتروني."),
+        "emailVerficationSent": MessageLookupByLibrary.simpleMessage(
+            "لقد أرسل اليك بريد الكترونى للتحقق"),
         "enLang": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "entertainment": MessageLookupByLibrary.simpleMessage("ترفيه"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
+        "errorToManyRequests": MessageLookupByLibrary.simpleMessage(
+            "لقد تجاوزت عدد الطلبات المسموح بها خلال فترة زمنية قصيرة.\nتم تقييد المعدل مؤقتًا.\n يرجى المحاولة مرة أخرى بعد قليل."),
+        "exit":
+            MessageLookupByLibrary.simpleMessage("اضغط للخلف مرة أخرى للخروج"),
         "favorite": MessageLookupByLibrary.simpleMessage("المفضلة"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور"),
+        "forgotPasswordDetails": MessageLookupByLibrary.simpleMessage(
+            "لا تقلق ، في بعض الأحيان يمكن للناس أن ينسوا أيضًا ، أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور."),
         "fr": MessageLookupByLibrary.simpleMessage("فرنسا"),
         "gb": MessageLookupByLibrary.simpleMessage("المملكة المتحدة"),
         "general": MessageLookupByLibrary.simpleMessage("عام"),
         "goToLink": MessageLookupByLibrary.simpleMessage("انتقل إلى الرابط"),
+        "goodAfternoon": MessageLookupByLibrary.simpleMessage("مساء الخير"),
+        "goodEvening": MessageLookupByLibrary.simpleMessage("مساء الخير"),
         "goodMorning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
         "gr": MessageLookupByLibrary.simpleMessage("اليونان"),
         "guest": MessageLookupByLibrary.simpleMessage("ضيف"),
@@ -80,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ie": MessageLookupByLibrary.simpleMessage("أيرلندا"),
         "il": MessageLookupByLibrary.simpleMessage("إسرائيل"),
         "india": MessageLookupByLibrary.simpleMessage("الهند"),
+        "internetNotStable": MessageLookupByLibrary.simpleMessage(
+            "الاتصال بالانترنت غير مستقر !"),
         "it": MessageLookupByLibrary.simpleMessage("إيطاليا"),
         "jp": MessageLookupByLibrary.simpleMessage("اليابان"),
         "kr": MessageLookupByLibrary.simpleMessage("كوريا الجنوبية"),
@@ -87,10 +118,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "lightMode": MessageLookupByLibrary.simpleMessage("الوضع النهاري"),
         "logIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "loginAlertText": MessageLookupByLibrary.simpleMessage(
+            "يرجى تسجيل الدخول لإضافة هذا العنصر إلى المفضلة."),
+        "loginAlertTitle": MessageLookupByLibrary.simpleMessage("أنت خارج"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "البريد الإلكتروني أو كلمة المرور غير صحيحة"),
         "loginWithSocialMedia":
             MessageLookupByLibrary.simpleMessage("أو تسجيل الدخول بواسطة"),
+        "logoutDescription":
+            MessageLookupByLibrary.simpleMessage("هل تريد تسجيل الخروج؟"),
         "lt": MessageLookupByLibrary.simpleMessage("ليتوانيا"),
         "lv": MessageLookupByLibrary.simpleMessage("لاتفيا"),
         "ma": MessageLookupByLibrary.simpleMessage("المغرب"),
@@ -101,8 +137,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "ng": MessageLookupByLibrary.simpleMessage("نيجيريا"),
         "nl": MessageLookupByLibrary.simpleMessage("هولندا"),
         "no": MessageLookupByLibrary.simpleMessage("النرويج"),
+        "noBack": MessageLookupByLibrary.simpleMessage(
+            "لم يتم العثور على تاريخ للعودة"),
+        "noConnection":
+            MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالانترنت"),
         "noFavorite":
             MessageLookupByLibrary.simpleMessage("ليس لديك مفضل حتى الآن!"),
+        "noForward": MessageLookupByLibrary.simpleMessage(
+            "لم يتم العثور على سجل للأمام"),
         "noHistory": MessageLookupByLibrary.simpleMessage("لا يوجد سجل"),
         "noRoute": MessageLookupByLibrary.simpleMessage("الصفحة غير موجودة"),
         "noUser": MessageLookupByLibrary.simpleMessage(
@@ -126,12 +168,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "passErrorSignUp": MessageLookupByLibrary.simpleMessage(
             "استخدم 8 أحرف أو أكثر في كلمة المرور الخاصة بك"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة السر"),
+        "passwordResestDetails": MessageLookupByLibrary.simpleMessage(
+            "أمن حسابك هو أولويتنا! لقد أرسلنا لك رابطًا آمنًا لتغيير كلمة المرور بأمان والحفاظ على حسابك محميًا."),
+        "passwordReset": MessageLookupByLibrary.simpleMessage(
+            "تم إرسال رابط إعادة ضبط كلمة المرور إلى بريدك الإلكتروني!"),
         "ph": MessageLookupByLibrary.simpleMessage("الفلبين"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "pl": MessageLookupByLibrary.simpleMessage("بولندا"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف\nالشخصي"),
         "pt": MessageLookupByLibrary.simpleMessage("البرتغال"),
+        "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "requiredField": MessageLookupByLibrary.simpleMessage("مطلوب"),
+        "resendEmail": MessageLookupByLibrary.simpleMessage(
+            "إعادة إرسال البريد الإلكتروني"),
+        "retry": MessageLookupByLibrary.simpleMessage("أعد المحاولة"),
         "ro": MessageLookupByLibrary.simpleMessage("رومانيا"),
         "rs": MessageLookupByLibrary.simpleMessage("صربيا"),
         "ru": MessageLookupByLibrary.simpleMessage("روسيا"),
@@ -144,8 +194,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchResult": MessageLookupByLibrary.simpleMessage("نتيجة البحث"),
         "select": MessageLookupByLibrary.simpleMessage("اختر"),
         "selectInterestedCountry": MessageLookupByLibrary.simpleMessage(
-            "اختر الدولة النى مهتم بأخبارها"),
+            "اختر الدولة التى مهتم بأخبارها"),
         "selectLanguage": MessageLookupByLibrary.simpleMessage("اختر اللغة"),
+        "sent": MessageLookupByLibrary.simpleMessage("أرسلت"),
+        "serverError": MessageLookupByLibrary.simpleMessage(
+            "حدث شئ خطأ بالرجاء المحاولة مرة أخرى"),
         "sg": MessageLookupByLibrary.simpleMessage("سنغافورة"),
         "si": MessageLookupByLibrary.simpleMessage("سلوفينيا"),
         "signUpWithSc":
@@ -165,14 +218,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "trend": MessageLookupByLibrary.simpleMessage("موضوعات رائجة اليوم"),
         "tw": MessageLookupByLibrary.simpleMessage("تايوان"),
         "ua": MessageLookupByLibrary.simpleMessage("أوكرانيا"),
+        "unKnownError": MessageLookupByLibrary.simpleMessage(
+            "لقد حدث خطأ يرجى المحاولة مرة أخرى لاحقا !"),
         "us": MessageLookupByLibrary.simpleMessage("الولايات المتحدة"),
         "usa": MessageLookupByLibrary.simpleMessage("الولايات المتحدة"),
         "userError": MessageLookupByLibrary.simpleMessage(
             "لم يتم العثور على اسم المستخدم!"),
+        "userNotFound":
+            MessageLookupByLibrary.simpleMessage("المستخدم غير موجود"),
         "ve": MessageLookupByLibrary.simpleMessage("فنزويلا"),
         "wrong": MessageLookupByLibrary.simpleMessage("خطأ"),
         "wrongPass": MessageLookupByLibrary.simpleMessage(
             "تم توفير كلمة مرور خاطئة لذلك المستخدم."),
+        "yourInterests": MessageLookupByLibrary.simpleMessage("Your interests"),
         "za": MessageLookupByLibrary.simpleMessage("جنوب أفريقيا")
       };
 }

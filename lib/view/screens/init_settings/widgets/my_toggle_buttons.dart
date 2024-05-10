@@ -1,6 +1,5 @@
 import 'package:breaking_news/bloc/init_settings/init_settings_states.dart';
 import 'package:breaking_news/bloc/sharedprefrences/sharedpref_bloc.dart';
-import 'package:breaking_news/bloc/sharedprefrences/sharedpref_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../bloc/init_settings/init_settings_bloc.dart';

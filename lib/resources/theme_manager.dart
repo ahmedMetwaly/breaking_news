@@ -9,24 +9,22 @@ class ThemeManager {
     brightness: Brightness.dark,
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
-      primary: const Color.fromARGB(255, 255, 82, 2),
-      onPrimary: const Color.fromARGB(255, 255, 255, 1),
+      primary: ColorsManager.primaryDark,
+      onPrimary: ColorsManager.onPrimaryDark,
       secondary: ColorsManager.backgroundDark,
       onSecondary: ColorsManager.backgroundDark,
       error: ColorsManager.error,
       onError: ColorsManager.error.withOpacity(0.4),
       background: ColorsManager.backgroundDark,
       onBackground: ColorsManager.backgroundDark.withOpacity(0.4),
-      surface:  const Color.fromARGB(255, 255, 82, 2),
+      surface: ColorsManager.primaryDark,
       onSurface: ColorsManager.lightPrimary,
-      inversePrimary: ColorsManager.white,
+      inversePrimary: ColorsManager.backgroundDark,
       outline: ColorsManager.lightPrimary,
-      
     ),
     appBarTheme: AppBarTheme(
-      backgroundColor: ColorsManager.backgroundLight,
+      backgroundColor: ColorsManager.backgroundDark,
       titleTextStyle: FontManager.getAppBarTextStyle(),
-      
     ),
     textTheme: TextTheme(
       headlineLarge: FontManager.getHeadLineLargeStyle(),
@@ -67,6 +65,12 @@ class ThemeManager {
           borderSide: const BorderSide(
             color: ColorsManager.error,
           )),
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      elevation: SizeManager.elevationOfBNB,
+      backgroundColor: ColorsManager.backgroundDark,
+      selectedIconTheme: IconThemeData(color: ColorsManager.primaryDark),
+      selectedItemColor: ColorsManager.primaryDark,
     ),
   );
 
@@ -86,12 +90,10 @@ class ThemeManager {
       onSurface: ColorsManager.lightPrimary,
       inversePrimary: ColorsManager.white,
       outline: ColorsManager.lightPrimary,
-
     ),
     appBarTheme: AppBarTheme(
       backgroundColor: ColorsManager.backgroundLight,
       titleTextStyle: FontManager.getAppBarTextStyle(),
-
     ),
     textTheme: TextTheme(
       headlineLarge: FontManager.getHeadLineLargeStyle(),
@@ -110,25 +112,25 @@ class ThemeManager {
           .copyWith(color: ColorsManager.lightPrimary),
       border: OutlineInputBorder(
           borderRadius:
-          BorderRadius.circular(SizeManager.borderRadiusOfInputField),
+              BorderRadius.circular(SizeManager.borderRadiusOfInputField),
           borderSide: const BorderSide(
             color: ColorsManager.lightPrimary,
           )),
       errorBorder: OutlineInputBorder(
           borderRadius:
-          BorderRadius.circular(SizeManager.borderRadiusOfInputField),
+              BorderRadius.circular(SizeManager.borderRadiusOfInputField),
           borderSide: const BorderSide(
             color: ColorsManager.error,
           )),
       focusedBorder: OutlineInputBorder(
           borderRadius:
-          BorderRadius.circular(SizeManager.borderRadiusOfInputField),
+              BorderRadius.circular(SizeManager.borderRadiusOfInputField),
           borderSide: const BorderSide(
             color: ColorsManager.lightPrimary,
           )),
       focusedErrorBorder: OutlineInputBorder(
           borderRadius:
-          BorderRadius.circular(SizeManager.borderRadiusOfInputField),
+              BorderRadius.circular(SizeManager.borderRadiusOfInputField),
           borderSide: const BorderSide(
             color: ColorsManager.error,
           )),

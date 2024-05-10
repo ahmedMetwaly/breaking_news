@@ -45,11 +45,11 @@ class _PassswordState extends State<Passsword> {
         setState(() {
           passwordStrength = 3 / 4;
         });
-        print(passwordStrength);
+        //print(passwordStrength);
         return false;
       }
     }
-    print(passwordStrength);
+    //print(passwordStrength);
 
     return false;
   }

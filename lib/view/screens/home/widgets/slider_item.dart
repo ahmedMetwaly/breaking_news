@@ -23,7 +23,7 @@ class SliderItem extends StatelessWidget {
       onTap: () {
         if (state is AuthenticationSuccessState) {
           AuthenticationBloc.user.history!.insert(0, article);
-          print(AuthenticationBloc.user.history);
+          //print(AuthenticationBloc.user.history);
           context.read<FirestoreBloc>().add(UserUpdateDataEvent());
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => DisplayArticle(article: article),
@@ -60,11 +60,11 @@ class SliderItem extends StatelessWidget {
                   article.title ?? "",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: 15,
-                        color: Theme.of(context).colorScheme.inversePrimary,
+                        color: Colors.white,
                         shadows: [
                           Shadow(
                               color: Theme.of(context).colorScheme.surface,
-                              blurRadius: 10,
+                              blurRadius: 8,
                               offset: SizeManager.boxShadowOffset)
                         ],
                         fontWeight: FontWeight.w600,

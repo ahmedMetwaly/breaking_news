@@ -17,26 +17,27 @@ class FavBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-      builder: (BuildContext context, AuthenticationState state) =>
+      builder: (BuildContext context, AuthenticationState state) => 
           IconButton.outlined(
         icon: AuthenticationBloc.user.favouriteTopics!
                 .any((element) => element.url == article.url)
             ? const Icon(Icons.bookmark)
             : const Icon(Icons.bookmark_border_rounded),
         onPressed: () {
+          
           if (state is AuthenticationSuccessState) {
             if (AuthenticationBloc.user.favouriteTopics!
                 .any((element) => element.url == article.url)) {
               AuthenticationBloc.user.favouriteTopics?.removeWhere(
                 (element) => element.url == article.url,
               );
-              debugPrint(AuthenticationBloc.user.favouriteTopics.toString());
+            //  debug//print(AuthenticationBloc.user.favouriteTopics.toString());
               context
                   .read<FirestoreBloc>()
                   .add(UpdateUserFavouriteTopicsEvent());
             } else {
               AuthenticationBloc.user.favouriteTopics?.insert(0, article);
-              debugPrint(AuthenticationBloc.user.favouriteTopics.toString());
+             // debugprint(AuthenticationBloc.user.favouriteTopics.toString());
               context
                   .read<FirestoreBloc>()
                   .add(UpdateUserFavouriteTopicsEvent());

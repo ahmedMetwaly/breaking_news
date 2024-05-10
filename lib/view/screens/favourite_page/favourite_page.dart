@@ -21,7 +21,7 @@ class FavouritePage extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium)),
         body: Padding(
           padding: const EdgeInsets.all(PaddingManager.pMainPadding),
-          child: BlocBuilder<FirestoreBloc, FirestoreState>(
+          child: BlocConsumer<FirestoreBloc, FirestoreState>(
             builder: (context, state) {
               if (state is UpdatingFavoriteState) {
                 return const Center(
@@ -36,7 +36,6 @@ class FavouritePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ElevatedButton(
-
                             onPressed: () {
                               AuthenticationBloc.user.favouriteTopics = [];
                               context
@@ -52,7 +51,7 @@ class FavouritePage extends StatelessWidget {
                                       .colorScheme
                                       .inversePrimary,
                                 ),
-                                const  SizedBox(width:SizeManager.sSpace),
+                                const SizedBox(width: SizeManager.sSpace),
                                 Text(
                                   S.current.clear,
                                   textAlign: TextAlign.center,
@@ -64,7 +63,7 @@ class FavouritePage extends StatelessWidget {
                               ],
                             )),
                         const SizedBox(
-                          height: SizeManager.sSpace,
+                          height: SizeManager.sSpace
                         ),
                         Expanded(
                           child: ListView.separated(
@@ -158,6 +157,25 @@ class FavouritePage extends StatelessWidget {
                         ),
                       ],
                     );
+            },
+            listener: (BuildContext context, FirestoreState state) {
+              if (state is UpdateFailedDataState) {
+                showDialog<bool>(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text(S.current.error),
+                      content: Text(state.errorMessage),
+                      actions: [
+                        TextButton(
+                            onPressed: () => Navigator.pop(context, true),
+                            child: Text(S.current.retry)),
+                      ],
+                    );
+                  },
+                );
+              }
             },
           ),
         ));

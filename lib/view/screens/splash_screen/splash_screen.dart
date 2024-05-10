@@ -5,23 +5,22 @@ import "package:flutter/material.dart";
 import "package:breaking_news/resources/image_manager.dart";
 import "package:breaking_news/resources/values_manager.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
-
 import "../../../bloc/authentication/authentication_bloc.dart";
 import "../../../bloc/authentication/authentication_state.dart";
+
 import "../../../resources/routes.dart";
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       builder: (BuildContext context, AuthenticationState authState) {
         return BlocListener<SharedPrefBloc, SettingsStates>(
             listener: (context, state) {
-              print("in shared");
               if (state is SettingsLoadedSuccessfully) {
-                print("isOpenedBefore : ${state.isOpenedBefore}");
+                //print("in shared");
+                //print("isOpenedBefore : ${state.isOpenedBefore}");
                 if (state.isOpenedBefore! && authState is AuthLogOutState) {
                   Navigator.of(context).pushReplacementNamed(Routes.logIn);
                 } else if (state.isOpenedBefore! &&
@@ -53,16 +52,14 @@ class SplashScreen extends StatelessWidget {
               ),
             ));
       },
-      listener: (BuildContext context, AuthenticationState state) {
+      listener: (BuildContext context, AuthenticationState state) async {
         if (state is AuthenticationSuccessState &&
             FirebaseAuth.instance.currentUser!.emailVerified == true) {
-          print("the email verified");
-
+          //print("the email verified");
           Navigator.of(context).pushReplacementNamed(Routes.homeScreen);
         } else if (state is AuthenticationSuccessState &&
             FirebaseAuth.instance.currentUser!.emailVerified == false) {
-                        print("the email not verified");
-
+          //print("the email not verified");
           Navigator.of(context).pushReplacementNamed(Routes.verifyEmail);
         }
       },

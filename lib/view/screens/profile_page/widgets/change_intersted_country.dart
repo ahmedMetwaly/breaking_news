@@ -1,9 +1,4 @@
-import "package:breaking_news/bloc/authentication/authentication_bloc.dart";
-import "package:breaking_news/bloc/firestore/firestore_bloc.dart";
-import "package:breaking_news/bloc/firestore/firestore_state.dart";
 import "package:flutter/material.dart";
-import "package:flutter_bloc/flutter_bloc.dart";
-import "../../../../bloc/init_settings/init_settings_bloc.dart";
 import "../../../../generated/l10n.dart";
 import "../../init_settings/widgets/select_countries.dart";
 import '../../../../resources/values_manager.dart';
@@ -13,8 +8,7 @@ class ChangeInterstedCountry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FirestoreBloc,FirestoreState>(
-      builder: (context, state) =>  ListTile(
+    return  ListTile(
         onTap: () {
           showModalBottomSheet(
               context: context,
@@ -37,15 +31,8 @@ class ChangeInterstedCountry extends StatelessWidget {
           S.current.selectInterestedCountry,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        subtitle: Text(
-          context
-                  .read<InitSettingsBloc>()
-                  .countries[AuthenticationBloc.user.country] ??
-              "",
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
         trailing: const Icon(Icons.arrow_forward_ios_rounded),
-      ),
+      
     );
   }
 }

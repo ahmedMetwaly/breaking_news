@@ -7,6 +7,7 @@ import 'package:breaking_news/view/screens/home/widgets/coustom_appbar.dart';
 import 'package:breaking_news/view/screens/home/widgets/slider_item.dart';
 import '../../../../bloc/authentication/authentication_bloc.dart';
 import '../../../../bloc/news/news_event.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../model/article_model.dart';
 import '../../../../resources/values_manager.dart';
 
@@ -61,8 +62,23 @@ class Header extends StatelessWidget {
           );
         }
         if (state is ErrorState) {
-          //TODO:: make an error page
-          return Text("ERROR");
+          return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      context.read<NewsBloc>().country =
+                          AuthenticationBloc.user.country ?? "us";
+                      context.read<NewsBloc>().add(GetTopHeadline());
+                    },
+                    icon: const Icon(Icons.replay_outlined)),
+                Center(
+                    child: Text(
+                  S.current.connectionError,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                )),
+              ]);
         }
         return SizedBox(
             width: MediaQuery.of(context).size.width,
